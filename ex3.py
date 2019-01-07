@@ -21,10 +21,11 @@ def count_tokens(tokens, n=None):
     return freq_counter.most_common(n)
 
 
-def plot_log(x, y):
+def plot_log(x, y, title):
     plt.xlabel('rank')
     plt.ylabel('frequencies')
     plt.plot(np.log(x + 1), np.log(y))  # plot logarithm of results
+    plt.title("Plot for question " + title + '.')
     plt.show()
 
 
@@ -32,7 +33,7 @@ def q_b(tokens, question_letter):
     tokens_count = count_tokens(tokens) # tokens count of form  [...(token, count)...]
     x = np.arange(0, len(tokens_count))
     y = np.array([i[1] for i in tokens_count])
-    plot_log(x, y)
+    plot_log(x, y, question_letter)
     print('List for question ' + question_letter + " :")
     print(tokens_count[:TOP_TOKENS])  # print top 20x:
 
@@ -67,7 +68,7 @@ def q_e(book_text):
     tokens_count = count_tokens(token_list)
     x = np.arange(0, len(tokens_count))
     y = np.array([i[1] for i in tokens_count])
-    plot_log(x, y)
+    plot_log(x, y, 'e')
     print('List for question e:')
     print(tokens_count[:TOP_TOKENS])
 
